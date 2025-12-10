@@ -143,6 +143,11 @@ function adapter.discover_positions(path)
       )
       arguments: (arguments (string (string_fragment) @namespace.name) (arrow_function))
     )) @namespace.definition
+    ; Matches: `describeLayerWithEngine('context', layer, () => ...)` (custom @effect/vitest wrapper)
+    ((call_expression
+      function: (identifier) @func_name (#eq? @func_name "describeLayerWithEngine")
+      arguments: (arguments (string (string_fragment) @namespace.name) . (_) (arrow_function))
+    )) @namespace.definition
 
     ; -- Tests --
     ; Matches: `test('test') / it('test')`
